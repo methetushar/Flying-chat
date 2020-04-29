@@ -2004,6 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2014,7 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
       to_message: '',
       from_message: '',
       my_id: [],
-      data: []
+      data: {}
     };
   },
   mounted: function mounted() {
@@ -2042,12 +2043,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     SendMessage: function SendMessage() {
-      axios.post('send-message').then(function (response) {
-        console.log(response);
+      var _this3 = this;
+
+      axios.post('/send-message', this.data).then(function (response) {
+        console.log(response.data);
+        _this3.data.text = '';
       })["catch"](function (error) {
         console.log(error);
       });
-      this.data.text = '';
     }
   }
 });

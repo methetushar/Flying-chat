@@ -73,6 +73,7 @@
                                 <div :class="text.from == my_id ? 'msg_cotainer_send' : 'msg_cotainer' ">
                                     {{ text.message }}
                                     <span class="msg_time"> {{text.created_at}}</span>
+<!--                                    <span class="msg_time"> {{date('d M Y,h:i:a',strtotime(text.created_at))}}</span>-->
                                 </div>
                             </div>
 <!--                            <div class="d-flex justify-content-end mb-4" v-for="text in message">-->
@@ -105,7 +106,7 @@
                 to_message:'',
                 from_message:'',
                 my_id:[],
-                data:[],
+                data:{},
             }
         },
         mounted() {
@@ -131,21 +132,21 @@
                     console.log(error);
                 })
             },
-            SendMessage(){
-                axios.post('send-message')
+            SendMessage: function(){
+                axios.post('/send-message',this.data)
                 .then(response =>{
-                    console.log(response);
-
+                    console.log(response.data);
+                    this.data.text = '';
                 })
                 .catch(error =>{
                     console.log(error)
                 });
-                this.data.text = ''
             }
         }
     }
-</script>
 
+
+</script>
 <style scoped>
     .body{
         height: 100%;

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 {{--    <link rel="stylesheet" href="{{ asset('assets/css/Chat__UI_2.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
     <div id="app">
@@ -19,12 +21,13 @@
     </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
+    <script !src="">
+        $(document).ready(function(){
+            $('#action_menu_btn').click(function(){
+                $('.action_menu').toggle();
+            });
+        });
+    </script>
 </body>
 </html>
-<script !src="">
-    $(document).ready(function(){
-        $('#action_menu_btn').click(function(){
-            $('.action_menu').toggle();
-        });
-    });
-</script>
+
