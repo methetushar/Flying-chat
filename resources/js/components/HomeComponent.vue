@@ -66,25 +66,25 @@
                             </div>
                         </div>
                         <div class="card-body msg_card_body"  >
-                            <div class="d-flex justify-content-start mb-4" v-for="text in message">
-                                <div class="img_cont_msg">
-                                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+                            <div :class="text.from == my_id ? 'd-flex justify-content-end mb-4' : 'd-flex justify-content-start mb-4' " v-for="text in message">
+                                <div class="img_cont_msg" v-if="text.from !== my_id">
+                                    <img :src="ActiveUser.avatar" class="rounded-circle user_img_msg">
                                 </div>
-                                <div class="msg_cotainer">
+                                <div :class="text.from == my_id ? 'msg_cotainer_send' : 'msg_cotainer' ">
                                     {{ text.message }}
-                                    <span class="msg_time">8:40 AM, Today</span>
+                                    <span class="msg_time"> {{text.created_at}}</span>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    Hi Khalid i am good tnx how about you?
-                                    <span class="msg_time_send">8:55 AM, Today</span>
-                                </div>
-                            </div>
+<!--                            <div class="d-flex justify-content-end mb-4" v-for="text in message">-->
+<!--                                <div class="msg_cotainer_send" v-if="text.to == to_message">-->
+<!--                                    {{ text.message }}-->
+<!--                                    <span class="msg_time_send">8:55 AM, Today</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                         <div class="card-footer">
                             <div class="input-group">
-                                <input name="" class="form-control type_msg" placeholder="Type your message...">
+                                <input  v-model="data.text" class="form-control type_msg"  @keyup.enter="SendMessage" placeholder="Type your message...">
                             </div>
                         </div>
                     </div>
@@ -102,6 +102,10 @@
                 ActiveUser:[],
                 active_status:'offline',
                 message:[],
+                to_message:'',
+                from_message:'',
+                my_id:[],
+                data:[],
             }
         },
         mounted() {
@@ -118,11 +122,25 @@
                 .then(response => {
                     this.ActiveUser = response.data[0];
                     this.message = response.data[1];
-                    console.log(this.message);
+                    this.my_id = response.data[2];
+                    this.to_message = this.message.to;
+                    this.data.from_id = this.my_id;
+                    this.data.to_id = id;
                 })
                 .catch(error => {
                     console.log(error);
                 })
+            },
+            SendMessage(){
+                axios.post('send-message')
+                .then(response =>{
+                    console.log(response);
+
+                })
+                .catch(error =>{
+                    console.log(error)
+                });
+                this.data.text = ''
             }
         }
     }

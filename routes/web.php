@@ -14,5 +14,5 @@ Route::post('/register-data','RegisterController@store')->name('RegisterData');
 Route::post('/login-data','RegisterController@login');
 
 Route::get('session',function (){
-   return session()->flush('authenticated');
+   return session()->get('authenticated');
 });

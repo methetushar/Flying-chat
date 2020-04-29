@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2451470-e053-4bb4-ac84-34444f54e91f" name="Default Changelist" comment="" />
+    <list default="true" id="e2451470-e053-4bb4-ac84-34444f54e91f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/HomeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/HomeComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +28,9 @@
         <option value="Vue Single File Component" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -121,6 +131,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1abyRWH4akhVNWDwbWNilE8GUG2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -128,6 +139,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/css" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -169,6 +181,8 @@
       <workItem from="1587855329643" duration="2485000" />
       <workItem from="1587941402297" duration="4474000" />
       <workItem from="1587977048724" duration="12534000" />
+      <workItem from="1588050036317" duration="3633000" />
+      <workItem from="1588114901905" duration="4565000" />
     </task>
     <servers />
   </component>
@@ -180,10 +194,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="532" y="292" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1587019889572" />
-    <state x="339" y="165" key="run.anything.popup" timestamp="1587944463478">
+    <state x="339" y="165" key="run.anything.popup" timestamp="1588050761569">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1587944463478" />
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1588050761569" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1587981001914">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

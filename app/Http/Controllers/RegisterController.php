@@ -28,7 +28,7 @@ class RegisterController extends Controller
             'password' =>$request->password,
         ];
         Register::create($data);
-        Session::put('authenticated',$request->email);
+        Session::push('authenticated',$request->email);
         $session =  session()->get('authenticated');
         if ($session){
             Register::where('email',$session)->update(['is_active'=>1]);
@@ -40,8 +40,8 @@ class RegisterController extends Controller
     {
         $match_data = Register::where('email',$request->email)->where('password',$request->password)->first();
         if ($match_data){
-            Session::put('authenticated',$request->email);
-            $session =  session()->get('authenticated');
+            Session::push('authenticated',$request->email);
+            $session =  Session()->get('authenticated');
             if ($session){
                 Register::where('email',$session)->update(['is_active'=>1]);
             }
@@ -71,7 +71,7 @@ class RegisterController extends Controller
             $query->where('from',$friend_id)->where('to',$my_id);
         })->get();
        $viewData =  Register::find($friend_id);
-       $data = [$viewData,$message];
+       $data = [$viewData,$message,$my_id];
         return response()->json($data);
     }
 }

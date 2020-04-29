@@ -2010,7 +2010,11 @@ __webpack_require__.r(__webpack_exports__);
       FriendList: [],
       ActiveUser: [],
       active_status: 'offline',
-      message: []
+      message: [],
+      to_message: '',
+      from_message: '',
+      my_id: [],
+      data: []
     };
   },
   mounted: function mounted() {
@@ -2029,10 +2033,21 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('view-message/' + id).then(function (response) {
         _this2.ActiveUser = response.data[0];
         _this2.message = response.data[1];
-        console.log(_this2.message);
+        _this2.my_id = response.data[2];
+        _this2.to_message = _this2.message.to;
+        _this2.data.from_id = _this2.my_id;
+        _this2.data.to_id = id;
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    SendMessage: function SendMessage() {
+      axios.post('send-message').then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.data.text = '';
     }
   }
 });
@@ -41139,34 +41154,90 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "card-body msg_card_body" },
-                  [
-                    _vm._l(_vm.message, function(text) {
-                      return _c(
-                        "div",
-                        { staticClass: "d-flex justify-content-start mb-4" },
-                        [
-                          _vm._m(2, true),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "msg_cotainer" }, [
+                  _vm._l(_vm.message, function(text) {
+                    return _c(
+                      "div",
+                      {
+                        class:
+                          text.from == _vm.my_id
+                            ? "d-flex justify-content-end mb-4"
+                            : "d-flex justify-content-start mb-4"
+                      },
+                      [
+                        text.from !== _vm.my_id
+                          ? _c("div", { staticClass: "img_cont_msg" }, [
+                              _c("img", {
+                                staticClass: "rounded-circle user_img_msg",
+                                attrs: { src: _vm.ActiveUser.avatar }
+                              })
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            class:
+                              text.from == _vm.my_id
+                                ? "msg_cotainer_send"
+                                : "msg_cotainer"
+                          },
+                          [
                             _vm._v(
-                              "\n                                " +
+                              "\n                                    " +
                                 _vm._s(text.message) +
-                                "\n                                "
+                                "\n                                    "
                             ),
                             _c("span", { staticClass: "msg_time" }, [
-                              _vm._v("8:40 AM, Today")
+                              _vm._v(" " + _vm._s(text.created_at))
                             ])
-                          ])
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _vm._m(3)
-                  ],
-                  2
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  0
                 ),
                 _vm._v(" "),
-                _vm._m(4)
+                _c("div", { staticClass: "card-footer" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.text,
+                          expression: "data.text"
+                        }
+                      ],
+                      staticClass: "form-control type_msg",
+                      attrs: { placeholder: "Type your message..." },
+                      domProps: { value: _vm.data.text },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !$event.type.indexOf("key") &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.SendMessage($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "text", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ])
               ])
             : _vm._e()
         ])
@@ -41228,45 +41299,6 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("li", [_c("i", { staticClass: "fas fa-ban" }), _vm._v(" Block")])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "img_cont_msg" }, [
-      _c("img", {
-        staticClass: "rounded-circle user_img_msg",
-        attrs: {
-          src: "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex justify-content-end mb-4" }, [
-      _c("div", { staticClass: "msg_cotainer_send" }, [
-        _vm._v(
-          "\n                                Hi Khalid i am good tnx how about you?\n                                "
-        ),
-        _c("span", { staticClass: "msg_time_send" }, [_vm._v("8:55 AM, Today")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "input-group" }, [
-        _c("input", {
-          staticClass: "form-control type_msg",
-          attrs: { name: "", placeholder: "Type your message..." }
-        })
       ])
     ])
   }
